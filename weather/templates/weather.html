@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather App</title>
+</head>
+
+<body>
+    <h1>Weather App</h1>
+    <form action="{% url 'weather' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="location" placeholder="Enter a location" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if location %}
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% else %}
+    <h2>Weather for {{ location }}</h2>
+    <p>Temperature: {{ temperature }}&deg;C</p>
+    <p>Humidity: {{ humidity }}%</p>
+    {% endif %}
+    {% endif %}
+</body>
+
+</html>
